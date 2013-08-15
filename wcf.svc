@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="RESTFulNotes.wcf" CodeBehind="~/App_Code/wcf.cs" %>
