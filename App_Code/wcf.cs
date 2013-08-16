@@ -27,8 +27,13 @@ namespace RESTFulNotes
             // Using Brigthcove Media API Request generator at:
             // http://docs.brightcove.com/en/video-cloud/media/samples/search_videos.html
 
+            string bc_read_token = ConfigurationManager.AppSettings["BC_READ_TOKEN"];
+
             // Removed &callback=BCL.onSearchResponse from the URL
-            string url = "http://api.brightcove.com/services/library?command=search_videos&page_size=5&video_fields=id%2Cname%2CshortDescription&media_delivery=default&sort_by=DISPLAY_NAME%3AASC&page_number=0&get_item_count=true&token=7kUUuCExWP1WwHpR_kHJ3dBR6NEDdLbSL0-ncHqUw3-eUQLsK76inQ..";
+            string url = "http://api.brightcove.com/services/library?command=search_videos&page_size=5&video_fields=id%2Cname%2CshortDescription&media_delivery=default&sort_by=DISPLAY_NAME%3AASC&page_number=0&get_item_count=true&token={0}";
+            // Insert BC READ TOKEN to the URL
+            url = String.Format(url, bc_read_token);
+
             string json = "";
             string strRes = "";
 
