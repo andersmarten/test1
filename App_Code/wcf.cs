@@ -78,6 +78,7 @@ namespace RESTFulNotes
             // http://stackoverflow.com/questions/992533/wcf-responseformat-for-webget
 
             // Set MIME type for returned data
+            // http://stackoverflow.com/questions/992533/wcf-responseformat-for-webget
             OutgoingWebResponseContext context = WebOperationContext.Current.OutgoingResponse;
             context.ContentType = "application/json"; // "text/plain";
 
