@@ -12,31 +12,14 @@ namespace RESTFulNotes
     [ServiceContract]
     public interface Iwcf
     {
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, UriTemplate = "List")]
         [OperationContract]
-        void DoWork();
+        string List();
 
-        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, UriTemplate = "Notes?tag={tag}")]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "List2")]
         [OperationContract]
-        Notes FindNotes(string tag);
+        System.IO.Stream List2();
     }
 
-    [DataContract]
-    public class Note
-    {
-        [DataMember]
-        public int ID { get; set; }
-        [DataMember]
-        public string Category { get; set; }
-        [DataMember]
-        public string Subject { get; set; }
-        [DataMember]
-        public string NoteText { get; set; }
-    }
-
-    [CollectionDataContract]
-    public class Notes : List<Note>
-    {
-        public Notes() { }
-        public Notes(List<Note> Notes) : base(Notes) { }
-    }
+    
 }
