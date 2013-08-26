@@ -66,13 +66,24 @@ namespace RESTFulNotes
             // Get READ TOKEN from app settings
             // http://www.codeproject.com/Articles/602146/Keeping-Sensitive-Config-Settings-Secret-with-Azur
             // http://social.msdn.microsoft.com/Forums/vstudio/en-US/e13194df-6308-4cbe-973c-f6a462f43eae/how-can-wcf-library-dll-access-application-settings
-            
-            string bc_read_token = ConfigurationManager.AppSettings["BC_READ_TOKEN"];
+
+            string bc_read_token = ConfigurationManager.AppSettings["BC_READ_TOKEN_KF"];
+            string video_id = "2624888559001";
 
             // Removed &callback=BCL.onSearchResponse from the URL
-            string url = "http://api.brightcove.com/services/library?command=search_videos&page_size=5&video_fields=id%2Cname%2CshortDescription&media_delivery=default&sort_by=DISPLAY_NAME%3AASC&page_number=0&get_item_count=true&token={0}";
+            string url = "";
+            // url = "http://api.brightcove.com/services/library?command=search_videos&page_size=5&video_fields=id%2Cname%2CshortDescription&media_delivery=default&sort_by=DISPLAY_NAME%3AASC&page_number=0&get_item_count=true&token={0}";
+            
+            // Get playlist associated with a player
+            //url = "http://api.brightcove.com/services/library?command=find_playlists_for_player_id&player_id=1180742924001&video_fields=id,name,shortDescription,videoStillURL,thumbnailURL,length,playsTotal&media_delivery=default&token={0}";
+
+            // Get video streams from video ID
+            url = "http://api.brightcove.com/services/library?command=find_video_by_id&video_id={1}&video_fields=id,FLVURL&media_delivery=default&token={0}";
+
+            //url = "http://api.brightcove.com/services/library?command=find_video_by_id&video_id={1}&video_fields=id,FLVURL&media_delivery=default&token={0}";
+
             // Insert BC READ TOKEN to the URL
-            url = String.Format(url, bc_read_token);
+            url = String.Format(url, bc_read_token, video_id);
             string json = "";
 
             // Use WebClient to read data from service. Synchronous call.
